@@ -1,41 +1,23 @@
-const express = require('express');
+const express = require("express");
 app = express();
-const mongoose = require('mongoose');
-const dotenv = require ('dontenv')
+require("dotenv").config();
+const connectDB = require("./db/connect");
+const router = require('./routes/users.route')
 
+app.use(express.json());
 
-app.use(express.json())
-const port = process.env.PORT 
+app.use('/api', router);
 
+const PORT = process.env.PORT;
 
+const start = () => {
+  try {
+    connectDB(process.env.DB_URL);
+    console.log("Connected to database");
+    app.listen(PORT, () => console.log(`App listening on port ${PORT}...`));
+  } catch (error) {
+    console.log("unable to connect to database");
+  }
+};
 
-
-mongoose.connect('mongodb://localhost:27017/cordCtrl')
-.then(()=>{
-    console.log('connected to mongodb');
-    app.listen(port, ()=> console.log(`Server connect to port ${port}`));
-})
-.catch(()=>{
-    console.error("unable to coonect to mongodb");
-})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+start();
