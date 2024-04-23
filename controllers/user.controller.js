@@ -34,7 +34,7 @@ const userController = {
       let token = jwt.sign(payload, process.env.JWT_SECRET);
       res.status(200).send({ token });
     } catch (error) {
-      res.status(404).json({ message: error.message });
+      res.status(404).json({ message: error });
     }
   },
   login: async (req, res) => {
