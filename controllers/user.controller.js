@@ -23,11 +23,6 @@ const userController = {
         email,
         password: hashpassword,
         image,
-        address1,
-        address2,
-        region,
-        country,
-        verificationCode,
       });
       await newUser.save();
       let payload = { subject: newUser.subject };
