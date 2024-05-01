@@ -10,11 +10,6 @@ const userController = {
         email,
         password,
         image,
-        address1,
-        address2,
-        region,
-        country,
-        verificationCode,
       } = req.body;
       const salt = await bcrypt.genSalt(15);
       const hashpassword = await bcrypt.hash(password, salt);
