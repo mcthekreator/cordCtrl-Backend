@@ -5,16 +5,11 @@ const jwt = require("jsonwebtoken");
 const userController = {
   registerUser: async (req, res) => {
     try {
-      const {
-        name,
-        email,
-        password,
-        image,
-      } = req.body;
+      const { username, email, password, image } = req.body;
       const salt = await bcrypt.genSalt(15);
       const hashpassword = await bcrypt.hash(password, salt);
       const newUser = new userModel({
-        name,
+        username,
         email,
         password: hashpassword,
         image,
@@ -61,3 +56,5 @@ const userController = {
 };
 
 module.exports = userController;
+
+
